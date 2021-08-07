@@ -24,7 +24,6 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-                       
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Домой</a>
                         </li>
@@ -36,27 +35,30 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
                                 <a class="nav-link text-dark" asp-area="" asp-controller="ApplicationType" asp-action="Index">Application Type</a>
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Продукт</a>
-                                <a><hr class="dropdown-divider"></a>                                
+                                <a><hr class="dropdown-divider"></a>
+                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Создать администратора</a>
                             </div>
                         </li>
                         <li>
                             @if (HttpContextAccessor.HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart) != null)
                             {
                                 <a asp-action="Index" asp-controller="Cart" class="nav-link">
-                                    @{ 
+                                    @{
                                         var count = HttpContextAccessor.HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart).Count;
                                     }
                                     <i class="fas fa-shopping-cart"></i> &nbsp; (@count)
                                 </a>
-                             }
-                             else
-                             {
+                            }
+                            else
+                            {
                                 <a href="#" class="nav-link">
                                     <i class="fas fa-shopping-cart"></i> &nbsp; (0)
                                 </a>
-                             }
+                            }
 
                         </li>
+
+                        <partial name="_LoginPartial" />
                     </ul>
                 </div>
             </div>
