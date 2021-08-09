@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Rocky.Data;
 using Rocky.Models;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace Rocky.Controllers
 {
 
-
+        [Authorize(Roles = WC.AdminRole)]
         public class ApplicationTypeController : Controller
         {
 
