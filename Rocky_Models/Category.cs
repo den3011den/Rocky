@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
-namespace Rocky.Models
+namespace Rocky_Models
 {
     public class Category
     {
