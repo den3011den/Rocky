@@ -105,6 +105,8 @@ namespace Rocky.Controllers
                     productVM.Product.Image = fileName + extension;
 
                     _prodRepo.Add(productVM.Product);
+
+                    TempData[WC.Success] = "Продукт добавлен";
                 }
                 else
                 {
@@ -137,6 +139,7 @@ namespace Rocky.Controllers
                     }
 
                     _prodRepo.Update(productVM.Product);
+                    TempData[WC.Success] = "Продукт обновлён";
                 }
 
                 _prodRepo.Save();
@@ -200,6 +203,7 @@ namespace Rocky.Controllers
 
             _prodRepo.Remove(obj);
             _prodRepo.Save();
+            TempData[WC.Success] = "Продукт удалён";
             return RedirectToAction("Index");
           
         }

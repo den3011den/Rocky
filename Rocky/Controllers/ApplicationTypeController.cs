@@ -42,6 +42,7 @@ namespace Rocky.Controllers
                 {
                     _appTypeRepo.Add(obj);
                     _appTypeRepo.Save();
+                    TempData[WC.Success] = "Приложение '" + obj.Name + "' успешно создано";
                     return RedirectToAction("Index");
                 }
                 return View(obj);
@@ -75,6 +76,7 @@ namespace Rocky.Controllers
                 {
                     _appTypeRepo.Update(obj);
                     _appTypeRepo.Save();
+                    TempData[WC.Success] = "Приложение '" + obj.Name + "' успешно обновлено";
                     return RedirectToAction("Index");
                 }
                 return View(obj);
@@ -113,6 +115,7 @@ namespace Rocky.Controllers
 
                 _appTypeRepo.Remove(obj);
                 _appTypeRepo.Save();
+                TempData[WC.Success] = "Приложение '" + obj.Name + "' успешно удалено";
                 return RedirectToAction("Index");
 
             }
