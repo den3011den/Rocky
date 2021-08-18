@@ -1,5 +1,15 @@
-﻿<div class="text-center">
-    <h1 class="text-info">Информация о заказе</h1>
+﻿@model Rocky_Models.OrderHeader
+
+<div class="text-center">
+    @if (Model != null)
+    {
+        <h1 class="text-info">Заказ создан</h1>
+        <p>Заказ с номером @Model.Id успешно создан </p>
+    }
+    else
+    {
+    <h1 class="text-info">Запрос подтверждён</h1>
     <p>Мы получили Ваш запрос и в скором времени кто-либо из нашей команды свяжется с Вами</p>
+    }
     <img src="/images/patio.jpg" width="80%" />
 </div>
