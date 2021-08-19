@@ -98,10 +98,12 @@ namespace Rocky.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+                    ModelState.AddModelError(string.Empty, "Не удалось войти.");
                     return Page();
                 }
             }
+            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             // If we got this far, something failed, redisplay form
             return Page();
