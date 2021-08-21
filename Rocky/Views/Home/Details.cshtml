@@ -30,7 +30,7 @@
 
                                         <p class="text-secondary">@Html.Raw(Model.Product.Description)</p>
                                     </div>
-                                    @if(User.IsInRole(WC.AdminRole))
+                                    @if (User.IsInRole(WC.AdminRole))
                                     {
                                         <div class="col-12">
                                             Метры квадратные:
@@ -55,7 +55,7 @@
                 <div class="card-footer bg-dark">
                     <div class="row">
                         <div class="col-12 col-md-6 pb-1 ">
-                            <a asp-action ="Index" class="btn btn-success btn-square form-control btn-lg" style="height:50px;">Назад в список</a>
+                            <a asp-action="Index" class="btn btn-success btn-square form-control btn-lg" style="height:50px;">Назад в список</a>
                         </div>
                         <div class="col-12 col-md-6 ">
                             @if (Model.ExistsInCart)
@@ -74,3 +74,8 @@
         </div>
     </form>
 </div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+}

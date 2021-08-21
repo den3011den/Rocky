@@ -11,7 +11,7 @@
                         Информация о заказе
                     </div>
                     <div class="col-6 text-right">
-                        <a class="btn btn-outline-info btn-sm">Вернуться в корзину</a>
+                        <a class="btn btn-outline-info btn-sm" asp-action="Index">Вернуться в корзину</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -28,8 +28,7 @@
                                         <label>Имя</label>
                                     </div>
                                     <div class="col-9">
-                                        <input asp-for="@Model.ApplicationUser.FullName" type="text" class="form-control" />
-                                        <span asp-validation-for="ApplicationUser.FullName" class="text-danger"></span>
+                                        <input asp-for="@Model.ApplicationUser.FullName" type="text" class="form-control" />                                       
                                     </div>
                                 </div>
                                 <div class="row my-1">
@@ -38,7 +37,6 @@
                                     </div>
                                     <div class="col-9">
                                         <input asp-for="@Model.ApplicationUser.PhoneNumber" required type="text" class="form-control" />
-                                        <span asp-validation-for="ApplicationUser.PhoneNumber" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="row my-1">
@@ -47,7 +45,6 @@
                                     </div>
                                     <div class="col-9">
                                         <input asp-for="@Model.ApplicationUser.Email" type="text" required class="form-control" />
-                                        <span asp-validation-for="ApplicationUser.Email" class="text-danger"></span>
                                     </div>
                                 </div>
                                 @if (User.IsInRole(Rocky_Utility.WC.AdminRole))
@@ -58,7 +55,6 @@
                                         </div>
                                         <div class="col-9">
                                             <input asp-for="@Model.ApplicationUser.StreetAddress" type="text" class="form-control" />
-                                            <span asp-validation-for="ApplicationUser.StreetAddress" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="row my-1">
@@ -67,7 +63,6 @@
                                         </div>
                                         <div class="col-9">
                                             <input asp-for="@Model.ApplicationUser.City" type="text" class="form-control" />
-                                            <span asp-validation-for="ApplicationUser.City" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="row my-1">
@@ -76,7 +71,6 @@
                                         </div>
                                         <div class="col-9">
                                             <input asp-for="@Model.ApplicationUser.State" type="text" class="form-control" />
-                                            <span asp-validation-for="ApplicationUser.State" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="row my-1">
@@ -85,7 +79,6 @@
                                         </div>
                                         <div class="col-9">
                                             <input asp-for="@Model.ApplicationUser.PostalCode" type="text" class="form-control" />
-                                            <span asp-validation-for="ApplicationUser.PostalCode" class="text-danger"></span>
                                         </div>
                                     </div>
                                 }
@@ -151,11 +144,11 @@
                         <div class="col-12 col-md-5 offset-md-7">
                             @if (User.IsInRole(Rocky_Utility.WC.AdminRole))
                             {
-                                <button class="btn btn-success form-control" id="submit-button">Подтвердить заказ</button>
+                                <button class="btn btn-success form-control" onclick="validateInput()" id="submit-button">Подтвердить заказ</button>
                             }
                             else
                             {
-                                <button type="submit" class="btn btn-primary form-control">Отправить запрос</button>
+                                <button type="submit" class="btn btn-primary form-control"  onclick="validateInput()">Отправить запрос</button>
                             }
                         </div>
                     </div>
@@ -190,5 +183,39 @@
                 });
             });
         });
+        function validateInput() {
+            var app_name = document.getElementById("ApplicationUser_FullName").value;
+            var app_phone = document.getElementById("ApplicationUser_PhoneNumber").value;
+            var app_email = document.getElementById("ApplicationUser_Email").value;
+
+            if (app_name.toString() == '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Предупреждение...',
+                    text: 'Пожалуйста введите полное имя!',                    
+                })
+                return false;
+            }
+
+            if (app_phone.toString() == '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Предупреждение...',
+                    text: 'Пожалуйста введите номер телефона!',
+                })
+                return false;
+            }
+
+            if (app_email.toString() == '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Предупреждение...',
+                    text: 'Пожалуйста электронную почту!',
+                })
+                return false;
+            }
+
+            return true;
+        }
     </script>
 }

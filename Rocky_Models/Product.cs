@@ -44,7 +44,7 @@ namespace Rocky_Models
         public virtual ApplicationType ApplicationType { get; set; }
 
         [NotMapped]
-        [Range(1,10000)]
+        [Range(1,10000,ErrorMessage = "Количество должно быть больше нуля")]
         public int TempSqFt { get; set; }
 
     }
